@@ -1,0 +1,41 @@
+.badge {
+    display: inline-block;
+    color: #fff;
+    padding: 0.2rem 0.6rem;
+    border-radius: 1rem;
+    font-size: 0.6rem;
+    text-align: center;
+    white-space: nowrap;
+    background-color: green;
+}
+
+.badger {
+    display: inline-block;
+    color: #fff;
+    padding: 0.2rem 0.6rem;
+    border-radius: 1rem;
+    font-size: 0.6rem;
+    text-align: center;
+    white-space: nowrap;
+    background-color: red;
+}
+
+.badgeb {
+    display: inline-block;
+    color: #fff;
+    padding: 0.2rem 0.6rem;
+    border-radius: 1rem;
+    text-align: center;
+    white-space: nowrap;
+    background-color: blue;
+}
+
+.badget {
+    color: #47bbf1;
+    margin-right: 5px;
+}
+
+.badget:hover{
+    color: rgb(65, 113, 216);
+    text-decoration: underline;
+}
