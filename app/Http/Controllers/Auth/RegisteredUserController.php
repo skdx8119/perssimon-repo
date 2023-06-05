@@ -46,7 +46,7 @@ class RegisteredUserController extends Controller
         if(request()->hasFile('avatar')) {
             $name = request()->file('avatar')->getClientOriginalName();
             $avatar = date('Ymd_His').'_'.$name;
-            request()->file('avatar')->storeAs('public/avatar', $avatar);
+            request()->file('avatar')->storeAs('avatar', $avatar, 's3');
             //avatarファイル名をデータに追加
             $attr['avatar']=$avatar;
         }
