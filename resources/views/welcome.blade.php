@@ -19,7 +19,7 @@
             </div>
             <!-- 右側 -->
             <div class="w-full xl:w-3/5 py-6 overflow-y-hidden">
-                <img class="w-5/6 mx-auto lg:mr-0 slide-in-bottom rounded-lg shadow-xl" src="{{asset('logo/22940473.jpg')}}">
+                <img class="w-5/6 mx-auto lg:mr-0 slide-in-bottom rounded-lg shadow-xl" src="{{secure_asset('logo/22940473.jpg')}}">
             </div>
         </div>
         <div class="container pt-10 md:pt-18 px-6 mx-auto flex flex-wrap flex-col md:flex-row items-center">
