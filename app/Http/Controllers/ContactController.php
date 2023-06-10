@@ -24,6 +24,7 @@ class ContactController extends Controller
             'body'=>'required|max:1000',
         ]);
         Contact::create($inputs);
+        return back()->with('message', 'メールを送信したのでご確認ください');
 
         Mail::to(config('mail.admin'))->send(new ContactForm($inputs));
         Mail::to($inputs['email'])->send(new ContactForm($inputs));
