@@ -25,8 +25,6 @@ class ContactController extends Controller
         ]);
         Contact::create($inputs);
 
-        dd(config('mail.admin'));
-
         Mail::to(config('mail.admin'))->send(new ContactForm($inputs));
         Mail::to($inputs['email'])->send(new ContactForm($inputs));
 
