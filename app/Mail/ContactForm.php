@@ -21,22 +21,12 @@ class ContactForm extends Mailable
         $this->inputs = $inputs;
     }
 
-    public function envelope()
+    public function build()
     {
-        return new Envelope(
-            subject: 'お問い合わせを受け付けました',
-        );
-    }
-
-    public function content()
-    {
-        return new Content(
-            view: 'emails.contact',
-        );
-    }
-
-    public function attachments()
-    {
-        return [];
+        return $this
+            ->from(new Address(config('mail.from.address'), config('mail.from.name')))
+            ->subject('お問い合わせを受け付けました')
+            ->view('emails.contact')
+            ->with(['inputs' => $this->inputs]);
     }
 }
