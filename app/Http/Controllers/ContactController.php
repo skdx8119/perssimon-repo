@@ -25,14 +25,14 @@ class ContactController extends Controller
         Contact::create($inputs);
 
         $email = new Mail();
-        $email->setFrom("from@example.com", "Example User");
+        $email->setFrom("snsappsend@gmail.com", "Sns-app");
         $email->setSubject($inputs['title']);
         $email->addTo(config('mail.admin'), "Admin User");
         $email->addContent("text/plain", $inputs['body']);
         $email->addContent(
             "text/html", "<strong>".$inputs['body']."</strong>"
         );
-        $sendgrid = new SendGrid(env('SENDGRID_API_KEY'));
+        $sendgrid = new SendGrid(config('mail.sendgrid_api_key'));
 
         try {
             $response = $sendgrid->send($email);
