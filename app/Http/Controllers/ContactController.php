@@ -4,9 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Contact;
-use Illuminate\Support\Facades\Mail;
-use App\Mail\ContactForm;
-
+use SendGrid\Mail\Mail;
+use SendGrid;
 
 class ContactController extends Controller
 {
@@ -25,9 +24,28 @@ class ContactController extends Controller
         ]);
         Contact::create($inputs);
 
-        Mail::to(config('mail.admin'))->send(new ContactForm($inputs));
-        Mail::to($inputs['email'])->send(new ContactForm($inputs));
+        $email = new Mail();
+        $email->setFrom("from@example.com", "Example User");
+        $email->setSubject($inputs['title']);
+        $email->addTo(config('mail.admin'), "Admin User");
+        $email->addContent("text/plain", $inputs['body']);
+        $email->addContent(
+            "text/html", "<strong>".$inputs['body']."</strong>"
+        );
+        $sendgrid = new SendGrid(env('SENDGRID_API_KEY'));
 
-        return back()->with('message', 'メールを送信したのでご確認ください');
+        try {
+            $response = $sendgrid->send($email);
+            $email->setSubject($inputs['title']);
+            $email->addTo($inputs['email'], "User");
+            $email->addContent("text/plain", $inputs['body']);
+            $email->addContent(
+                "text/html", "<strong>".$inputs['body']."</strong>"
+            );
+            $response = $sendgrid->send($email);
+            return back()->with('message', 'メールを送信したのでご確認ください');
+        } catch (Exception $e) {
+            return back()->with('message', 'Failed to send mail: '.$e->getMessage());
+        }
     }
 }
