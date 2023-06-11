@@ -31,7 +31,7 @@ class ContactController extends Controller
             ->setSubject($inputs['title'])
             ->addContent("text/plain", $inputs['body']);
         $sendgrid = new \SendGrid(getenv('SENDGRID_API_KEY'));
-        ttry {
+        try {
             $response = $sendgrid->send($email);
             Log::info('SendGrid response status: ' . $response->statusCode());
         } catch (\Exception $e) {
