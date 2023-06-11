@@ -7,8 +7,6 @@ use App\Models\Contact;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\ContactForm;
 
-use SendGrid\Mail\Mail;
-use SendGrid;
 
 class ContactController extends Controller
 {
