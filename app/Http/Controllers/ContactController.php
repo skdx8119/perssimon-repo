@@ -24,8 +24,9 @@ class ContactController extends Controller
         ]);
         Contact::create($inputs);
 
-        $email = new Mail();
-        $email->setFrom("from@example.com", "Example User");
+        $email = new \SendGrid\Mail\Mail();
+        $email->setFrom(env('MAIL_FROM_ADDRESS', 'fallback@example.com'), env('MAIL_FROM_NAME', 'Fallback Sender'));
+
         $email->setSubject($inputs['title']);
         $email->addTo(config('mail.admin'), "Admin User");
         $email->addContent("text/plain", $inputs['body']);
