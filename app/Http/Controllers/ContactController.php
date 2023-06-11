@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use App\Models\Contact;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\ContactForm;
-use SendGrid;
 
 
 class ContactController extends Controller
