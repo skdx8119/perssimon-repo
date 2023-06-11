@@ -31,10 +31,11 @@ class ContactController extends Controller
             ->setSubject($inputs['title'])
             ->addContent("text/plain", $inputs['body']);
         $sendgrid = new \SendGrid(getenv('SENDGRID_API_KEY'));
-        try {
+        ttry {
             $response = $sendgrid->send($email);
-        } catch (Exception $e) {
-            echo 'Caught exception: '. $e->getMessage() ."\n";
+            Log::info('SendGrid response status: ' . $response->statusCode());
+        } catch (\Exception $e) {
+            Log::error('Caught exception: '. $e->getMessage());
         }
 
         return back()->with('message', 'メールを送信したのでご確認ください');
