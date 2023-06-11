@@ -17,36 +17,26 @@ class ContactController extends Controller
     public function store(Request $request)
     {
 
-        $inputs=request()->validate([
-            'title'=>'required|max:255',
-            'email'=>'required|email|max:255',
-            'body'=>'required|max:1000',
+        $inputs = $request->validate([
+            'title' => 'required|max:255',
+            'email' => 'required|email|max:255',
+            'body' => 'required|max:1000',
         ]);
+
         Contact::create($inputs);
 
         $email = new \SendGrid\Mail\Mail();
-        $email->setFrom(env('MAIL_FROM_ADDRESS', 'fallback@example.com'), env('MAIL_FROM_NAME', 'Fallback Sender'));
-
-        $email->setSubject($inputs['title']);
-        $email->addTo(config('mail.admin'), "Admin User");
-        $email->addContent("text/plain", $inputs['body']);
-        $email->addContent(
-            "text/html", "<strong>".$inputs['body']."</strong>"
-        );
-        $sendgrid = new SendGrid(env('SENDGRID_API_KEY'));
-
+        $email->setFrom("sugurukakizaki119_0511@yahoo.co.jp", "Sns-app")
+            ->setTo("sugurukakizaki119_0511@yahoo.co.jp", "Suguru Kakizaki")
+            ->setSubject($inputs['title'])
+            ->addContent("text/plain", $inputs['body']);
+        $sendgrid = new \SendGrid(getenv('SENDGRID_API_KEY'));
         try {
             $response = $sendgrid->send($email);
-            $email->setSubject($inputs['title']);
-            $email->addTo($inputs['email'], "User");
-            $email->addContent("text/plain", $inputs['body']);
-            $email->addContent(
-                "text/html", "<strong>".$inputs['body']."</strong>"
-            );
-            $response = $sendgrid->send($email);
-            return back()->with('message', 'メールを送信したのでご確認ください');
         } catch (Exception $e) {
-            return back()->with('message', 'Failed to send mail: '.$e->getMessage());
+            echo 'Caught exception: '. $e->getMessage() ."\n";
         }
+
+        return back()->with('message', 'メールを送信したのでご確認ください');
     }
 }
