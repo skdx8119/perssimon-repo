@@ -26,7 +26,7 @@ class ContactController extends Controller
 
         Contact::create($inputs);
 
-        Mail::to(config('mail.admin'))->send(new ContactForm($inputs));
+        Mail::to(.env('mail.admin'))->send(new ContactForm($inputs));
         Mail::to($inputs['email'])->send(new ContactForm($inputs));
 
         return back()->with('message','メールを送信しました。');
