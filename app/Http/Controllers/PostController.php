@@ -51,7 +51,7 @@ class PostController extends Controller
             'title'=>'required|max:255',
             'body'=>'required|max:1000',
             'image'=>'image|max:1024',
-            'tags' => 'required|string'
+            'tags' => 'nullable|string'
         ]);
 
         $post=new Post();
