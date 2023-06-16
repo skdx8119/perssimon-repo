@@ -29,27 +29,31 @@ class ProfileController extends Controller
      * Update the user's profile information.
      */
     public function update(ProfileUpdateRequest $request): RedirectResponse
-{
-    $user = $request->user();
-    $user->fill($request->validated());
+    {
+        $request->user()->fill($request->validated());
 
-    if ($user->isDirty('email')) {
-        $user->email_verified_at = null;
-    }
-
-    if ($request->validated('avatar')) {
-        if ($user->avatar !== 'user_default.jpg') {
-            Storage::disk('s3')->delete('public/avatar/' . $user->avatar);
+        if ($request->user()->isDirty('email')) {
+            $request->user()->email_verified_at = null;
         }
 
-        $avatar = $request->file('avatar')->store('public/avatar', 's3');
-        $user->avatar = basename($avatar);
+        // アバター画像の保存
+        if($request->hasFile('avatar')) {
+            // 古いアバター削除コード
+            $user=User::find(Auth::id());
+            if($user->avatar!=='user_default.jpg'){
+                Storage::disk('s3')->delete('avatar/'.$user->avatar);
+            }
+
+            $path = Storage::disk('s3')->putFile('avatar', $request->file('avatar'), 'public');
+            $avatar=basename($path);
+            $request->user()->avatar = $avatar;
+        }
+
+        $request->user()->save();
+
+        return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }
 
-    $user->save();
-
-    return Redirect::route('profile.edit')->with('status', 'profile-updated');
-}
 
     /**
      * Delete the user's account.
@@ -90,29 +94,39 @@ class ProfileController extends Controller
 
     public function adupdate(Request $request): RedirectResponse
 {
-    $inputs = $request->validate([
+    $inputs=$request->validate([
         'name' => ['string', 'max:255'],
         'email' => ['email', 'max:255', Rule::unique(User::class)->ignore($request->user)],
-        'avatar' => ['image', 'max:1024'],
-        'user' => ['required']
+        'avatar'=> ['image', 'max:1024'],
+        'user'=> ['required']
     ]);
 
-    $user = $request->user();
+    $user=User::find($request->user);
 
-    if ($request->hasFile('avatar')) {
-        if ($user->avatar !== 'user_default.jpg') {
-            Storage::disk('s3')->delete('public/avatar/' . $user->avatar);
+    // アバター画像の保存
+    if(request()->hasFile('avatar')) {
+        // 古いアバター削除用コード
+        if ($user->avatar!=='user_default.jpg') {
+            Storage::disk('s3')->delete('avatar/'.$user->avatar);
         }
-
-        $avatar = $request->file('avatar')->store('public/avatar', 's3');
-        $user->avatar = basename($avatar);
+        $path = Storage::disk('s3')->putFile('avatar', $request->file('avatar'), 'public');
+        $avatar=basename($path);
+        $user->avatar = $avatar;
     }
 
-    $user->name = $inputs['name'];
-    $user->email = $inputs['email'];
+    $user->name=$inputs['name'];
+    $user->email=$inputs['email'];
     $user->save();
 
     return Redirect::route('profile.adedit', compact('user'))->with('status', 'profile-updated');
 }
 
+public function addestroy(User $user){
+    if ($user->avatar!=='user_default.jpg') {
+        Storage::disk('s3')->delete('avatar/'.$user->avatar);
+    }
+    $user->roles()->detach();
+    $user->delete();
+    return back()->with('message','ユーザーを削除しました');
+}
 }
