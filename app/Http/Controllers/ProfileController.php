@@ -38,7 +38,7 @@ class ProfileController extends Controller
 
     // アバター画像の保存
     if($request->validated('avatar')) {
-        $user=User::find(auth()->id);
+        $user=User::find(auth()->user()->id);
         if($user->avatar!=='user_default.jpg'){
             $oldavatar=$user->avatar;
             Storage::disk('s3')->delete($oldavatar);
