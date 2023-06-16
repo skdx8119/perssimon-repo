@@ -15,7 +15,7 @@
                         <div class="flex">
                             <div class="rounded-full w-12 h-12">
                                 {{-- アバター表示 --}}
-                                <img src="{{asset('storage/avatar/'.($post->user->avatar??'user_default.jpg'))}}">
+                                <img src="{{ Storage::disk('s3')->url('avatar/'.$user->avatar??'user_default.jpg') }}">
                             </div>
                             <h1 class="text-lg text-gray-700 font-semibold float-left pt-4">
                                 {{ $post->title }}
