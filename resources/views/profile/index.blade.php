@@ -26,7 +26,7 @@
                             <td class="border-gray-light border hover:bg-gray-100 p-3">{{$user->email}}</td>
                             <td class="border-gray-light border hover:bg-gray-100 p-3">
                                 <div class="rounded-full w-12 h-11 flex items-center">
-                                    <img src="{{asset('storage/avatar/'.($user->avatar??'user_default.jpg'))}}">
+                                    <img src="{{ Storage::disk('s3')->url('avatar/'.$user->avatar??'user_default.jpg') }}">
                                 </div>
                             </td>
                             <td class="border-gray-light border hover:bg-gray-100 p-3">
