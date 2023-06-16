@@ -56,7 +56,7 @@
                         </div>
                         <!-- いいね機能 -->
                         <div class="flex items-center mt-4 space-x-2">
-                            <img src="{{Storage::disk('s3')->url('images/nicebutton.png'))}}" width="30px">
+                            <img src="{{Storage::disk('s3')->url('images/nicebutton.png')}}" width="30px">
 
                             <!-- もし$niceがあれば＝ユーザーが「いいね」をしていたら -->
                             @if($nice)
