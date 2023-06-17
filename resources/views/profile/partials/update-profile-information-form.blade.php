@@ -55,14 +55,12 @@
 
         <div>
             <x-input-label for="avatar" :value="__('プロフィール画像（任意・1MBまで）')" />
-            <div>
-                <x-input-label for="avatar" :value="__('プロフィール画像（任意・1MBまで）')" />
-                <div class="rounded-full w-36">
-                    <img src="{{ Storage::disk('s3')->url('avatar/'.($user->avatar??'user_default.jpg')) }}">
-                </div>
-                <x-text-input id="avatar" name="avatar" type="file" class="mt-1 block w-full" :value="old('avatar')" />
-                <x-input-error class="mt-2" :messages="$errors->get('avatar')" />
+            <div class="rounded-full w-36">
+                <img src="{{ Storage::disk('s3')->url('avatar/'.($user->avatar??'user_default.jpg')) }}">
             </div>
+            <x-text-input id="avatar" name="avatar" type="file" class="mt-1 block w-full" :value="old('avatar')" />
+            <x-input-error class="mt-2" :messages="$errors->get('avatar')" />
+        </div>
 
         {{-- $user情報をhiddenで渡す --}}
         @if (isset($admin))
