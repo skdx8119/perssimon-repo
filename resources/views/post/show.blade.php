@@ -22,6 +22,9 @@
                             </h1>
                         </div>
 
+                        <hr class="w-full">
+
+
                         @if($post->tags->count())
                             <div class="mt-2">
                                 @foreach($post->tags as $tag)
@@ -29,8 +32,6 @@
                                 @endforeach
                             </div>
                         @endif
-
-                        <hr class="w-full">
 
                     </div>
                     <div class="flex justify-end mt-4">
