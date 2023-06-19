@@ -4,7 +4,7 @@
         <div class="container pt-10 md:pt-18 px-6 mx-auto flex flex-wrap flex-col md:flex-row items-center bg-yellow-50">
             <!-- 左側 -->
             <div class="flex flex-col w-full xl:w-2/5 justify-center lg:items-start overflow-y-hidden">
-                <h1 class="my-4 text-3xl md:text-5xl text-green-800 font-bold leading-tight text-center md:text-left slide-in-bottom-h1">プログラマのかんたんSNS</h1>
+                <h1 class="my-4 text-3xl md:text-5xl text-green-800 font-bold leading-tight text-center md:text-left slide-in-bottom-h1">プログラマ初心者のかんたんSNS</h1>
                 <p class="leading-normal text-base md:text-2xl mb-8 text-center md:text-left slide-in-bottom-subtitle">
                     仕事や勉強の合間に、趣味を公開したり共有したりするプログラミングの話題もウェルカム♪
                 </p>
@@ -24,7 +24,7 @@
         </div>
         <div class="container pt-10 md:pt-18 px-6 mx-auto flex flex-wrap flex-col md:flex-row items-center">
             <div class="w-full text-sm text-center md:text-left fade-in border-2 p-4 text-red-800 leading-8 mb-8">
-                <P>自分と同じ趣味の人と語り合いたい、自分の趣味を披露したいと思う事はないですか？<br>本サイトでは、趣味の合うプログラマ同士の交流を深めていただけます。<br>お気軽に登録して、発信してみてくださいね。</p>
+                <P>自分と同じ趣味の人と語り合いたい、自分の趣味を披露したいと思う事はないですか？<br>本サイトでは、趣味の合う者同士の交流を深めていただけます。<br>お気軽に登録して、発信してみてくださいね。</p>
             </div>
             <!--フッタ-->
             <div class="w-full pt-10 pb-6 text-sm md:text-left fade-in">
