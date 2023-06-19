@@ -33,6 +33,13 @@
                                 <a href="{{route('post.show', $post)}}">{{ $post->title }}</a>
                             </h1>
                         </div>
+
+                        @if($post->tags->count())
+                                @foreach($post->tags as $tag)
+                                    <a class="badget" href="{{ route('post.index', ['tag' => $tag->name]) }}">#{{ $tag->name }}</a>
+                                @endforeach
+                        @endif
+
                         <hr class="w-full">
                         @if($post->image)
                             <img src="{{ Storage::disk('s3')->url($post->image) }}" class="mx-auto flex items-center my-4 rounded-lg" style="height:100px;">
