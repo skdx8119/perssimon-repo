@@ -71,14 +71,16 @@ class PostController extends Controller
 
         // タグの保存処理追加
         $tagNames = preg_split('/[\s　]+/u', $request->tags);
-    $tagIds = [];
-    foreach ($tagNames as $tagName) {
-        $tag = Tag::firstOrCreate(['name' => $tagName]);
-        if ($tag) {
-            $tagIds[] = $tag->id;
+        $tagIds = [];
+        foreach ($tagNames as $tagName) {
+            if(trim($tagName) != '') {  // 追加：タグ名が空白でないことを確認
+                $tag = Tag::firstOrCreate(['name' => $tagName]);
+                if ($tag) {
+                    $tagIds[] = $tag->id;
+                }
+            }
         }
-    }
-    $post->tags()->sync($tagIds);
+        $post->tags()->sync($tagIds);
 
         return redirect()->route('post.create')->with('message', '投稿を作成しました');
     }
