@@ -27,7 +27,7 @@
                                 {{-- アバター表示 --}}
                                 <img src="{{ $post->user->avatar ?? Storage::disk('s3')->url('avatar/user_default.jpg') }}">
                             </div>
-                            <h1 class="text-lg text-indigo-700 font-semibold hover:underline cursor-pointer float-left pt-4">
+                            <h1 class="text-lg text-gray-700 font-semibold hover:underline cursor-pointer float-left pt-4">
                                 <a href="{{route('post.show', $post)}}">{{ $post->title }}</a>
                             </h1>
                         </div>
