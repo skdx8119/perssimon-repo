@@ -50,7 +50,7 @@
                         </div>
                         <hr class="w-full mt-4">
 
-                        @if($post->tags->count() >)
+                        @if($post->tags->count())
                                 @foreach($post->tags as $tag)
                                     <a class="badget" href="{{ route('post.index', ['tag' => $tag->name]) }}">#{{ $tag->name }}</a>
                                 @endforeach
