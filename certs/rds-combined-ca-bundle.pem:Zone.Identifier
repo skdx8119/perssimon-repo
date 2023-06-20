@@ -1,0 +1,4 @@
+[ZoneTransfer]
+ZoneId=3
+ReferrerUrl=https://mysql.jawsdb.com/
+HostUrl=https://s3.amazonaws.com/rds-downloads/rds-combined-ca-bundle.pem
