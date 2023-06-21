@@ -46,11 +46,12 @@ class RegisteredUserController extends Controller
         if(request()->hasFile('avatar')) {
             $name = request()->file('avatar')->getClientOriginalName();
             $avatar = date('Ymd_His').'_'.$name;
-            request()->file('avatar')->storeAs('avatar', $avatar, 's3');
-            //avatarファイル名をデータに追加
-            $attr['avatar']=$avatar;
+            $path = request()->file('avatar')->storeAs('avatar', $avatar, 's3');
+            //avatarのURLを生成
+            $avatar_url = Storage::disk('s3')->url($path);
+            //avatarのURLをデータに追加
+            $attr['avatar']=$avatar_url;
         }
-
         $user=User::create($attr);
 
         event(new Registered($user));
