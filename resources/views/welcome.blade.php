@@ -6,7 +6,7 @@
             <div class="flex flex-col w-full xl:w-2/5 justify-center lg:items-start overflow-y-hidden">
                 <h1 class="my-4 text-3xl md:text-5xl text-green-800 font-bold leading-tight text-center md:text-left slide-in-bottom-h1">プログラマ初心者のかんたんSNS</h1>
                 <p class="leading-normal text-base md:text-2xl mb-8 text-center md:text-left slide-in-bottom-subtitle">
-                    仕事や勉強の合間に、趣味を公開したり共有したりするプログラミングの話題もウェルカム♪
+                    仕事や勉強の合間に、趣味を公開したり共有したりするためのSNS風アプリ。プログラミングの話題もウェルカム♪
                 </p>
 
                 <p class="text-blue-400 font-bold pb-8 lg:pb-6 text-center md:text-left fade-in">
