@@ -27,10 +27,10 @@
                             @auth
                                 <a href="{{ url('/post') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">HOME</a>
                             @else
-                                <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline font-bold text-base">ログイン</a>
+                                <a href="{{ route('login') }}" class=" text-gray-700 dark:text-gray-500 underline font-bold text-base">ログイン</a>
 
                                 @if (Route::has('register'))
-                                    <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline font-bold text-base">登録</a>
+                                    <a href="{{ route('register') }}" class="ml-4  text-gray-700 dark:text-gray-500 underline font-bold text-base">登録</a>
                                 @endif
                             @endauth
                         @endif
