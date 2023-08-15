@@ -35,7 +35,8 @@
                             <div class="flex items-center">
                                 <div class="rounded-full w-12 h-12 flex items-center">
                                 {{-- アバター表示 --}}
-                                <img src="{{ $post->user->avatar ?? Storage::disk('s3')->url('avatar/user_default.jpg') }}">
+                                <img src="{{ $post->user->avatar ? Storage::disk('s3')->url($post->user->avatar) : Storage::disk('s3')->url('avatar/user_default.jpg') }}">
+
                                 </div>
                                 <div class="ml-4">
                                     <h1 class="text-lg text-gray-700 font-semibold hover:underline cursor-pointer">

@@ -49,7 +49,6 @@ class RegisteredUserController extends Controller
             $avatar = date('Ymd_His').'_'.$name;
             $path = $request->file('avatar')->storeAs('avatar', $avatar, 's3');
             $url = Storage::disk('s3')->url($path);
-
             // avatarのURLをデータに追加
             $attr['avatar'] = $url;
         }
