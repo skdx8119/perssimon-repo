@@ -56,7 +56,7 @@
         <div>
             <x-input-label for="avatar" :value="__('プロフィール画像（任意・1MBまで）')" />
             <div class="rounded-full w-36">
-                <img src="{{ $user->avatar ?? Storage::disk('s3')->url('avatar/user_default.jpg') }}">
+                <img src="{{ $post->user->avatar == 'user_default.jpg' ? Storage::disk('s3')->url('avatar/user_default.jpg') : $post->user->avatar }}">
             </div>
             <x-text-input id="avatar" name="avatar" type="file" class="mt-1 block w-full" :value="old('avatar')" />
             <x-input-error class="mt-2" :messages="$errors->get('avatar')" />
