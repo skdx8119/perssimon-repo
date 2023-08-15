@@ -35,7 +35,6 @@
                             <div class="flex items-center">
                                 <div class="rounded-full w-12 h-12 flex items-center">
                                 {{-- アバター表示 --}}
-                                {{ dd($post->user->avatar) }}
                                 <img src="{{ $post->user->avatar ?? Storage::disk('s3')->url('avatar/user_default.jpg') }}">
                                 </div>
                                 <div class="ml-4">
